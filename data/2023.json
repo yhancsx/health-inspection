@@ -1,0 +1,456 @@
+{
+  "year": "2023",
+  "basic_info": {
+    "name": "배요한",
+    "exam_date": "2023-11-27",
+    "birth_date": "1993-12-25",
+    "gender": "남성",
+    "registration_no": "005019888",
+    "center": "KMI수원 검진센터"
+  },
+  "doctor_opinion": {
+    "summary": "전립선 초음파상 전립선 내 석회화가 관찰됩니다. 담낭용종 소견으로 양성 콜레스테롤 용종으로 사료되며 1년 후 재검 권장합니다. 공복혈당(101mg/dL) 및 요단백(±) 경계 소견, hs-CRP(10.20mg/L) 상승 소견이 있어 관리가 필요합니다.",
+    "evaluations": [
+      {
+        "category": "전립선",
+        "finding": "전립선 내 석회화",
+        "status": "추적관찰"
+      },
+      {
+        "category": "담낭",
+        "finding": "담낭 용종",
+        "status": "추적관찰"
+      },
+      {
+        "category": "당뇨",
+        "finding": "공복혈당 장애 의심 (101mg/dL)",
+        "status": "경과관찰"
+      },
+      {
+        "category": "소변",
+        "finding": "요단백 약양성 (±)",
+        "status": "경과관찰"
+      },
+      {
+        "category": "염증",
+        "finding": "hs-CRP 상승 (10.20mg/L)",
+        "status": "주의"
+      }
+    ]
+  },
+  "categories": [
+    {
+      "name": "계측검사",
+      "items": [
+        {
+          "key": "height",
+          "name": "키",
+          "value": 169.7,
+          "unit": "cm",
+          "ref_range": "-",
+          "status": "정상"
+        },
+        {
+          "key": "weight",
+          "name": "몸무게",
+          "value": 66.5,
+          "unit": "kg",
+          "ref_range": "-",
+          "status": "정상"
+        },
+        {
+          "key": "bmi",
+          "name": "체질량지수(BMI)",
+          "value": 23.1,
+          "unit": "kg/㎡",
+          "ref_range": "18.5~24.9",
+          "status": "정상"
+        },
+        {
+          "key": "waist",
+          "name": "허리둘레",
+          "value": 74.0,
+          "unit": "cm",
+          "ref_range": "90 미만",
+          "status": "정상"
+        },
+        {
+          "key": "bp_sys",
+          "name": "수축기 혈압",
+          "value": 121,
+          "unit": "mmHg",
+          "ref_range": "120 미만",
+          "status": "고혈압전단계 (경계)"
+        },
+        {
+          "key": "bp_dia",
+          "name": "이완기 혈압",
+          "value": 71,
+          "unit": "mmHg",
+          "ref_range": "80 미만",
+          "status": "고혈압전단계 (경계)"
+        }
+      ]
+    },
+    {
+      "name": "혈액검사 (당뇨)",
+      "items": [
+        {
+          "key": "fasting_glucose",
+          "name": "공복혈당",
+          "value": 101,
+          "unit": "mg/dL",
+          "ref_range": "70~99",
+          "status": "경계 (공복혈당장애)"
+        },
+        {
+          "key": "hba1c",
+          "name": "당화혈색소(HbA1c)",
+          "value": 5.1,
+          "unit": "%",
+          "ref_range": "4.4~6.4",
+          "status": "정상"
+        }
+      ]
+    },
+    {
+      "name": "혈액검사 (지질대사/심혈관)",
+      "items": [
+        {
+          "key": "total_cholesterol",
+          "name": "총콜레스테롤",
+          "value": 158,
+          "unit": "mg/dL",
+          "ref_range": "120~199",
+          "status": "정상"
+        },
+        {
+          "key": "hdl_cholesterol",
+          "name": "HDL 콜레스테롤",
+          "value": 41,
+          "unit": "mg/dL",
+          "ref_range": "40~60",
+          "status": "정상"
+        },
+        {
+          "key": "ldl_cholesterol",
+          "name": "LDL 콜레스테롤",
+          "value": 104,
+          "unit": "mg/dL",
+          "ref_range": "50~129",
+          "status": "정상"
+        },
+        {
+          "key": "triglyceride",
+          "name": "중성지방",
+          "value": 65,
+          "unit": "mg/dL",
+          "ref_range": "50~149",
+          "status": "정상"
+        }
+      ]
+    },
+    {
+      "name": "혈액검사 (간기능)",
+      "items": [
+        {
+          "key": "ast",
+          "name": "AST (SGOT)",
+          "value": 18,
+          "unit": "IU/L",
+          "ref_range": "40 이하",
+          "status": "정상"
+        },
+        {
+          "key": "alt",
+          "name": "ALT (SGPT)",
+          "value": 10,
+          "unit": "IU/L",
+          "ref_range": "35 이하",
+          "status": "정상"
+        },
+        {
+          "key": "gamma_gtp",
+          "name": "감마지티피(γ-GTP)",
+          "value": 12,
+          "unit": "IU/L",
+          "ref_range": "63 이하",
+          "status": "정상"
+        },
+        {
+          "key": "total_protein",
+          "name": "총단백",
+          "value": 7.4,
+          "unit": "g/dL",
+          "ref_range": "6.0~8.3",
+          "status": "정상"
+        },
+        {
+          "key": "albumin",
+          "name": "알부민",
+          "value": 4.5,
+          "unit": "g/dL",
+          "ref_range": "3.5~5.2",
+          "status": "정상"
+        },
+        {
+          "key": "globulin",
+          "name": "글로불린",
+          "value": 2.9,
+          "unit": "g/dL",
+          "ref_range": "1.5~3.0",
+          "status": "정상"
+        },
+        {
+          "key": "ag_ratio",
+          "name": "A/G 비율",
+          "value": 1.6,
+          "unit": "-",
+          "ref_range": "1.3~2.3",
+          "status": "정상"
+        }
+      ]
+    },
+    {
+      "name": "혈액검사 (신장기능)",
+      "items": [
+        {
+          "key": "bun",
+          "name": "요소질소 (BUN)",
+          "value": 14,
+          "unit": "mg/dL",
+          "ref_range": "5~20",
+          "status": "정상"
+        },
+        {
+          "key": "creatinine",
+          "name": "혈청 크레아티닌",
+          "value": 1.3,
+          "unit": "mg/dL",
+          "ref_range": "0.5~1.4",
+          "status": "정상"
+        },
+        {
+          "key": "egfr",
+          "name": "신사구체여과율(e-GFR)",
+          "value": 64,
+          "unit": "mL/min/1.73㎡",
+          "ref_range": "60 이상",
+          "status": "정상"
+        }
+      ]
+    },
+    {
+      "name": "혈액검사 (혈액학/염증/종양)",
+      "items": [
+        {
+          "key": "hemoglobin",
+          "name": "혈색소(Hb)",
+          "value": 14.8,
+          "unit": "g/dL",
+          "ref_range": "13.0~16.5",
+          "status": "정상"
+        },
+        {
+          "key": "uric_acid",
+          "name": "요산 (Uric Acid)",
+          "value": 5.9,
+          "unit": "mg/dL",
+          "ref_range": "3.0~8.0",
+          "status": "정상"
+        },
+        {
+          "key": "rf",
+          "name": "류마티스인자 (RF)",
+          "value": "음성(4.4)",
+          "unit": "-",
+          "ref_range": "음성",
+          "status": "정상"
+        },
+        {
+          "key": "hscrp",
+          "name": "hs-CRP",
+          "value": 10.2,
+          "unit": "mg/L",
+          "ref_range": "0.00~3.00",
+          "status": "높음/주의"
+        },
+        {
+          "key": "cea",
+          "name": "CEA (대장/폐암)",
+          "value": 1.7,
+          "unit": "ng/mL",
+          "ref_range": "0~5",
+          "status": "정상"
+        },
+        {
+          "key": "psa",
+          "name": "PSA (전립선암)",
+          "value": 0.57,
+          "unit": "ng/mL",
+          "ref_range": "0~4",
+          "status": "정상"
+        },
+        {
+          "key": "tsh",
+          "name": "갑상선자극호르몬 (TSH)",
+          "value": 1.97,
+          "unit": "uIU/mL",
+          "ref_range": "0.3~5.5",
+          "status": "정상"
+        },
+        {
+          "key": "free_t4",
+          "name": "游離 갑상선호르몬 (Free T4)",
+          "value": 1.37,
+          "unit": "ng/dL",
+          "ref_range": "0.84~1.76",
+          "status": "정상"
+        }
+      ]
+    },
+    {
+      "name": "소변검사",
+      "items": [
+        {
+          "key": "urine_protein",
+          "name": "요단백",
+          "value": "±",
+          "unit": "-",
+          "ref_range": "음성(-)",
+          "status": "경계 (약양성)"
+        },
+        {
+          "key": "urine_glucose",
+          "name": "요당",
+          "value": "-",
+          "unit": "-",
+          "ref_range": "음성(-)",
+          "status": "정상"
+        },
+        {
+          "key": "urine_sg",
+          "name": "요비중",
+          "value": 1.027,
+          "unit": "-",
+          "ref_range": "1.005~1.030",
+          "status": "정상"
+        },
+        {
+          "key": "urine_ph",
+          "name": "요 pH",
+          "value": 6.0,
+          "unit": "-",
+          "ref_range": "5.0~8.0",
+          "status": "정상"
+        }
+      ]
+    },
+    {
+      "name": "안과 / 청력 / 안압",
+      "items": [
+        {
+          "key": "vision_left",
+          "name": "시력 (좌)",
+          "value": 1.0,
+          "unit": "-",
+          "ref_range": "0.8 이상",
+          "status": "정상"
+        },
+        {
+          "key": "vision_right",
+          "name": "시력 (우)",
+          "value": 1.0,
+          "unit": "-",
+          "ref_range": "0.8 이상",
+          "status": "정상"
+        },
+        {
+          "key": "hearing",
+          "name": "청력 (좌/우)",
+          "value": "정상",
+          "unit": "-",
+          "ref_range": "정상",
+          "status": "정상"
+        },
+        {
+          "key": "iop_left",
+          "name": "안압 (좌)",
+          "value": 12,
+          "unit": "mmHg",
+          "ref_range": "10~21",
+          "status": "정상"
+        },
+        {
+          "key": "iop_right",
+          "name": "안압 (우)",
+          "value": 12,
+          "unit": "mmHg",
+          "ref_range": "10~21",
+          "status": "정상"
+        }
+      ]
+    },
+    {
+      "name": "기타 영상 / 기능 검사",
+      "items": [
+        {
+          "key": "ecg",
+          "name": "심전도검사",
+          "value": "정상",
+          "unit": "-",
+          "ref_range": "정상",
+          "status": "정상"
+        },
+        {
+          "key": "chest_xray",
+          "name": "흉부 X-ray",
+          "value": "정상",
+          "unit": "-",
+          "ref_range": "정상",
+          "status": "정상"
+        },
+        {
+          "key": "stomach_exam",
+          "name": "위장검사",
+          "value": "정상 (특이소견없음)",
+          "unit": "-",
+          "ref_range": "정상",
+          "status": "정상"
+        },
+        {
+          "key": "us_gb",
+          "name": "담낭 초음파",
+          "value": "담낭 용종 (0.3cm 미만)",
+          "unit": "-",
+          "ref_range": "특이소견없음",
+          "status": "경과관찰"
+        },
+        {
+          "key": "us_prostate",
+          "name": "전립선 초음파",
+          "value": "전립선 내 석회화",
+          "unit": "-",
+          "ref_range": "특이소견없음",
+          "status": "경과관찰"
+        },
+        {
+          "key": "us_thyroid",
+          "name": "갑상선 초음파",
+          "value": "정상 (특이소견없음)",
+          "unit": "-",
+          "ref_range": "특이소견없음",
+          "status": "정상"
+        },
+        {
+          "key": "bmd",
+          "name": "골밀도 검사",
+          "value": "정상",
+          "unit": "-",
+          "ref_range": "정상",
+          "status": "정상"
+        }
+      ]
+    }
+  ]
+}
