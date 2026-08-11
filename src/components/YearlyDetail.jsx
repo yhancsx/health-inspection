@@ -4,9 +4,9 @@ import DoctorOpinionCard from './DoctorOpinionCard';
 import { Calendar, ChevronDown, ChevronUp, ArrowUpRight, ArrowDownRight, Minus } from 'lucide-react';
 
 export default function YearlyDetail({ yearData, prevYearData, searchQuery }) {
-  if (!yearData) return null;
-
   const [expandedCategories, setExpandedCategories] = useState({});
+
+  if (!yearData) return null;
 
   const toggleCategory = (catName) => {
     setExpandedCategories((prev) => ({

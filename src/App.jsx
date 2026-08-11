@@ -13,7 +13,19 @@ export default function App() {
   useEffect(() => {
     const loadAllData = async () => {
       try {
-        const years = ['2023', '2024', '2025'];
+        let years = ['2023', '2024', '2025', '2026'];
+        try {
+          const manifestRes = await fetch('./data/manifest.json');
+          if (manifestRes.ok) {
+            const manifest = await manifestRes.json();
+            if (manifest.years && Array.isArray(manifest.years)) {
+              years = manifest.years;
+            }
+          }
+        } catch {
+          console.warn('Using fallback years array');
+        }
+
         const promises = years.map(async (y) => {
           const res = await fetch(`./data/${y}.json`);
           if (!res.ok) throw new Error(`Failed to load ${y}.json`);
@@ -32,6 +44,7 @@ export default function App() {
   }, []);
 
   const basicInfo = yearsData.length > 0 ? yearsData[yearsData.length - 1].basic_info : null;
+  const availableYears = yearsData.map((d) => d.year);
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 selection:bg-indigo-500 selection:text-white">
@@ -92,7 +105,7 @@ export default function App() {
               연도별 추이 그래프
             </button>
 
-            {['2023', '2024', '2025'].map((yr) => (
+            {availableYears.map((yr) => (
               <button
                 key={yr}
                 onClick={() => setActiveTab(yr)}
@@ -125,26 +138,12 @@ export default function App() {
             <>
               {activeTab === 'overview' && <TrendOverview yearsData={yearsData} />}
 
-              {activeTab === '2023' && (
+              {availableYears.includes(activeTab) && (
                 <YearlyDetail
-                  yearData={yearsData.find((d) => d.year === '2023')}
-                  prevYearData={null}
-                  searchQuery={searchQuery}
-                />
-              )}
-
-              {activeTab === '2024' && (
-                <YearlyDetail
-                  yearData={yearsData.find((d) => d.year === '2024')}
-                  prevYearData={yearsData.find((d) => d.year === '2023')}
-                  searchQuery={searchQuery}
-                />
-              )}
-
-              {activeTab === '2025' && (
-                <YearlyDetail
-                  yearData={yearsData.find((d) => d.year === '2025')}
-                  prevYearData={yearsData.find((d) => d.year === '2024')}
+                  yearData={yearsData.find((d) => d.year === activeTab)}
+                  prevYearData={yearsData.find(
+                    (d) => Number(d.year) === Number(activeTab) - 1
+                  )}
                   searchQuery={searchQuery}
                 />
               )}
