@@ -16,6 +16,20 @@ import Badge from './Badge';
 export default function TrendOverview({ yearsData }) {
   if (!yearsData || yearsData.length === 0) return null;
 
+  const years = yearsData.map((d) => d.year).sort();
+  const startYear = years[0] || '2023';
+  const latestYear = years[years.length - 1] || '2026';
+
+  const formatMetricValue = (key, val) => {
+    if (val === null || val === undefined) return '';
+    if (typeof val === 'number') {
+      if (key && (key.includes('vision') || key === 'bmi' || key === 'hba1c')) {
+        return val.toFixed(1);
+      }
+    }
+    return val;
+  };
+
   // Prepare chart dataset chronologically
   const chartData = yearsData.map((data) => {
     const getVal = (key) => {
@@ -170,7 +184,7 @@ export default function TrendOverview({ yearsData }) {
         <div>
           <h2 className="text-2xl font-bold text-slate-100 flex items-center gap-2">
             <Activity className="w-6 h-6 text-indigo-400" />
-            연도별 핵심 건강지표 변화 추이 (2023 - 2025)
+            연도별 핵심 건강지표 변화 추이 ({startYear} - {latestYear})
           </h2>
           <p className="text-sm text-slate-400 mt-1">
             건강검진 수치를 바탕으로 주요 추이 그래프 및 전체 지표 비교표를 제공합니다.
@@ -243,7 +257,7 @@ export default function TrendOverview({ yearsData }) {
               공복혈당 추이 (mg/dL)
             </h3>
             <span className="text-xs px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 font-medium">
-              공복혈당장애 경계 관찰 필요
+              2026년 정상 수치 (98mg/dL) 회복
             </span>
           </div>
           <div className="h-64 w-full">
@@ -269,7 +283,7 @@ export default function TrendOverview({ yearsData }) {
               지질 프로필 추이 (콜레스테롤 & 중성지방)
             </h3>
             <span className="text-xs px-2.5 py-1 rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20 font-medium">
-              2025년 LDL/총콜레스테롤 상승 주의
+              2026년 LDL 141mg/dL로 개선
             </span>
           </div>
           <div className="h-64 w-full">
@@ -298,7 +312,7 @@ export default function TrendOverview({ yearsData }) {
               간기능 수치 (AST / ALT / γ-GTP)
             </h3>
             <span className="text-xs px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-medium">
-              3년 연속 매우 양호 (정상 A)
+              전 기간 매우 양호 (정상 A)
             </span>
           </div>
           <div className="h-64 w-full">
@@ -325,7 +339,7 @@ export default function TrendOverview({ yearsData }) {
               신장기능 및 염증 수치 (e-GFR & hs-CRP)
             </h3>
             <span className="text-xs px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-medium">
-              2023년 hs-CRP 상승 후 2025년 정상 회복 (0.1mg/L)
+              신기능 e-GFR 70 정상 유지
             </span>
           </div>
           <div className="h-64 w-full">
@@ -355,7 +369,7 @@ export default function TrendOverview({ yearsData }) {
             </div>
             <div>
               <h3 className="font-bold text-xl text-slate-100 flex items-center gap-2">
-                전체 검사 지표 연도별 종합 비교표 (2023 - 2025)
+                전체 검사 지표 연도별 종합 비교표 ({startYear} - {latestYear})
               </h3>
               <p className="text-xs text-slate-400 mt-0.5">
                 TSH, Free T4, 당화혈색소, 전해질, 안과, 청력, 체성분 및 주요 기능 지표 100% 통합 비교표입니다.
@@ -376,17 +390,23 @@ export default function TrendOverview({ yearsData }) {
                     <tr>
                       <th className="py-3.5 px-5">검사항목 (임상 참고치)</th>
                       <th className="py-3.5 px-4 text-center">단위</th>
-                      <th className="py-3.5 px-5 text-center bg-slate-900/80 text-slate-300">2023년</th>
-                      <th className="py-3.5 px-5 text-center bg-slate-900/80 text-slate-300">2024년</th>
-                      <th className="py-3.5 px-5 text-center bg-slate-900/80 text-slate-300">2025년</th>
+                      {years.map((y) => (
+                        <th key={y} className="py-3.5 px-5 text-center bg-slate-900/80 text-slate-300">
+                          {y}년
+                        </th>
+                      ))}
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-800/60">
                     {groupObj.items.map((def) => {
-                      const d2023 = getItemDetails('2023', def.key);
-                      const d2024 = getItemDetails('2024', def.key);
-                      const d2025 = getItemDetails('2025', def.key);
-                      const refRange = d2025?.ref_range || d2024?.ref_range || d2023?.ref_range || '-';
+                      let refRange = '-';
+                      for (let i = years.length - 1; i >= 0; i--) {
+                        const item = getItemDetails(years[i], def.key);
+                        if (item?.ref_range && item.ref_range !== '-') {
+                          refRange = item.ref_range;
+                          break;
+                        }
+                      }
 
                       return (
                         <tr key={def.key} className="hover:bg-slate-800/40 transition-colors">
@@ -402,41 +422,23 @@ export default function TrendOverview({ yearsData }) {
                             {def.unit}
                           </td>
 
-                          {/* 2023 Column */}
-                          <td className="py-3 px-5 text-center bg-slate-950/20">
-                            {d2023 ? (
-                              <div className="flex flex-col items-center gap-1">
-                                <span className="font-mono font-semibold text-slate-100">{d2023.value}</span>
-                                <Badge status={d2023.status} />
-                              </div>
-                            ) : (
-                              <span className="text-slate-600 text-xs">미실시</span>
-                            )}
-                          </td>
-
-                          {/* 2024 Column */}
-                          <td className="py-3 px-5 text-center bg-slate-950/20">
-                            {d2024 ? (
-                              <div className="flex flex-col items-center gap-1">
-                                <span className="font-mono font-semibold text-slate-100">{d2024.value}</span>
-                                <Badge status={d2024.status} />
-                              </div>
-                            ) : (
-                              <span className="text-slate-600 text-xs">미실시</span>
-                            )}
-                          </td>
-
-                          {/* 2025 Column */}
-                          <td className="py-3 px-5 text-center bg-slate-950/20">
-                            {d2025 ? (
-                              <div className="flex flex-col items-center gap-1">
-                                <span className="font-mono font-semibold text-slate-100">{d2025.value}</span>
-                                <Badge status={d2025.status} />
-                              </div>
-                            ) : (
-                              <span className="text-slate-600 text-xs">미실시</span>
-                            )}
-                          </td>
+                          {years.map((y) => {
+                            const item = getItemDetails(y, def.key);
+                            return (
+                              <td key={y} className="py-3 px-5 text-center bg-slate-950/20">
+                                {item ? (
+                                  <div className="flex flex-col items-center gap-1">
+                                    <span className="font-mono font-semibold text-slate-100">
+                                      {formatMetricValue(def.key, item.value)}
+                                    </span>
+                                    <Badge status={item.status} />
+                                  </div>
+                                ) : (
+                                  <span className="text-slate-600 text-xs">미실시</span>
+                                )}
+                              </td>
+                            );
+                          })}
                         </tr>
                       );
                     })}

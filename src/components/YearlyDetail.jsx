@@ -38,6 +38,13 @@ export default function YearlyDetail({ yearData, prevYearData, searchQuery }) {
     return { ...category, items };
   }).filter((category) => category.items && category.items.length > 0);
 
+  const formatValue = (item) => {
+    if (item && item.key && (item.key.includes('vision') || item.key === 'bmi' || item.key === 'hba1c')) {
+      if (typeof item.value === 'number') return item.value.toFixed(1);
+    }
+    return item.value;
+  };
+
   return (
     <div className="space-y-8">
       {/* Doctor Opinion Section */}
@@ -114,7 +121,7 @@ export default function YearlyDetail({ yearData, prevYearData, searchQuery }) {
                               {item.name}
                             </td>
                             <td className="py-3.5 px-6 text-right font-mono font-semibold text-slate-100">
-                              {item.value} <span className="text-xs font-normal text-slate-400 ml-0.5">{item.unit !== '-' ? item.unit : ''}</span>
+                              {formatValue(item)} <span className="text-xs font-normal text-slate-400 ml-0.5">{item.unit !== '-' ? item.unit : ''}</span>
                             </td>
                             <td className="py-3.5 px-6 text-center font-mono text-xs">
                               {delta !== null ? (
